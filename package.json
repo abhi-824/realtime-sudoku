@@ -1,0 +1,19 @@
+{
+  "name": "brainteaser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhi-824/realtime-sudoku.git"
+  },
+  "author": "Abhinandan Sharma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhi-824/realtime-sudoku/issues"
+  },
+  "homepage": "https://github.com/abhi-824/realtime-sudoku#readme"
+}
