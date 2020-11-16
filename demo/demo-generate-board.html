@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<link rel="stylesheet" media="all" type="text/css" href="../sudokuJS.css">
+		<style>
+			* {
+				margin:0; padding:0;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			.wrap {
+				padding: 2em 1em;
+				width: 400px;
+				max-width: 100%;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+			@media(min-width: 30em){
+				.wrap{
+					width: 490px;
+				}
+				.sudoku-board input {
+					font-size: 24px;
+					font-size: 1.5rem;
+				}
+				.sudoku-board .candidates {
+					font-size: .8em;
+				}
+			}
+
+		</style>
+
+		<title>Brain Teaser</title>
+
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="../sudokuJS.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	</head>
+
+	<body>
+	<div class="wrap">
+		<!-- <h1>S	udokuJS demo with board generation</h1> -->
+		<div class="timer"></div>
+		<h1 class="heading">Brain Teaser</h1>
+		<!--show candidates toggle-->
+		<div class="hidden candidates">
+			<label for="toggleCandidates">Show candidates </label><input id="toggleCandidates" class="js-candidate-toggle" type="checkbox"/>
+		</div>
+		<!--genrate board btns-->
+	
+		<button type="button" class="js-generate-board-btn--easy js-generate-board btn-outline-dark btn">Noob</button>
+		<button type="button" class="js-generate-board-btn--medium js-generate-board btn-outline-dark btn">Intermediate</button>
+		<button type="button" class="js-generate-board-btn--hard js-generate-board btn-outline-dark btn">Mastermind</button>
+		<button type="button" class="js-generate-board-btn--very-hard js-generate-board btn-outline-dark btn" >Pro</button>
+
+
+		<!--the only required html-->
+		<div id="sudoku" class="sudoku-board hidden">
+		</div>
+		<div class="hidden krr">
+			<!--solve buttons-->
+			Solve: <button type="button" class="js-solve-step-btn">One Step</button><button type="button" class="js-solve-all-btn">All</button>
+			<br>
+			<!--clear board btn-->
+			Clear: <button type="button" class="js-clear-board-btn">Board</button>
+
+		</div>
+	</div>
+	<footer>
+		<p>
+			Made with
+			<i class="fa fa-heart" style="color: red" aria-hidden="true"></i> By
+			Aakash and Deepak
+		</p>
+	</footer>
+	<script>
+		var	$candidateToggle = $(".js-candidate-toggle"),
+			$generateBoardBtnEasy = $(".js-generate-board-btn--easy"),
+			$generateBoardBtnMedium = $(".js-generate-board-btn--medium"),
+			$generateBoardBtnHard = $(".js-generate-board-btn--hard"),
+			$generateBoardBtnVeryHard = $(".js-generate-board-btn--very-hard"),
+
+			$solveStepBtn = $(".js-solve-step-btn"),
+			$solveAllBtn = $(".js-solve-all-btn"),
+			$clearBoardBtn = $(".js-clear-board-btn"),
+
+			mySudokuJS = $("#sudoku").sudokuJS({
+				difficulty: "very hard"
+				//change state of our candidate showing checkbox on change in sudokuJS
+				,candidateShowToggleFn : function(showing){
+					$candidateToggle.prop("checked", showing);
+				}
+			});
+
+		$solveStepBtn.on("click", mySudokuJS.solveStep);
+		$solveAllBtn.on("click", mySudokuJS.solveAll);
+		$clearBoardBtn.on("click", mySudokuJS.clearBoard);
+
+		$generateBoardBtnEasy.on("click", function(){
+			mySudokuJS.generateBoard("easy");
+		});
+		$generateBoardBtnMedium.on("click", function(){
+			mySudokuJS.generateBoard("medium");
+		});
+		$generateBoardBtnHard.on("click", function(){
+			mySudokuJS.generateBoard("hard");
+		});
+		$generateBoardBtnVeryHard.on("click", function(){
+			mySudokuJS.generateBoard("very hard");
+		});
+
+		$candidateToggle.on("change", function(){
+			if($candidateToggle.is(":checked"))
+				mySudokuJS.showCandidates();
+			else
+				mySudokuJS.hideCandidates();
+		});
+		$candidateToggle.trigger("change");
+	</script>
+	<script src="script.js"></script>
+	</body>
+</html>
