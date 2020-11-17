@@ -10,26 +10,7 @@
 				-webkit-box-sizing: border-box;
 				box-sizing: border-box;
 			}
-			.wrap {
-				padding: 2em 1em;
-				width: 400px;
-				max-width: 100%;
-				margin-left: auto;
-				margin-right: auto;
-			}
-
-			@media(min-width: 30em){
-				.wrap{
-					width: 490px;
-				}
-				.sudoku-board input {
-					font-size: 24px;
-					font-size: 1.5rem;
-				}
-				.sudoku-board .candidates {
-					font-size: .8em;
-				}
-			}
+			
 
 		</style>
 
@@ -37,7 +18,7 @@
 
 
 		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
-		<script type="text/javascript" src="../sudokuJS.js"></script>
+		<script type="text/javascript" src="sudokuJS.js"></script>
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -51,31 +32,50 @@
 			crossorigin="anonymous"
 		/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 	</head>
 
 	<body>
 	<div class="wrap">
 		<!-- <h1>S	udokuJS demo with board generation</h1> -->
-		<div class="timer"></div>
+		<div class="timer hidden"></div>
 		<h1 class="heading">Brain Teaser</h1>
-		<!--show candidates toggle-->
-		<div class="hidden candidates">
-			<label for="toggleCandidates">Show candidates </label><input id="toggleCandidates" class="js-candidate-toggle" type="checkbox"/>
+		<div class="modes">
+			<button class="btn btn-outline-success practiceMode btn-wavy">Practice Mode</button>
+			<button class="btn btn-outline-danger competitiveMode">Competitive Mode</button>
 		</div>
+		<div class="login">
+			<div class="md-form">
+				<input type="text" id="username" class="form-control">
+				<label for="form1">Enter Username</label>
+			  </div>
+		</div>
+		<!--show candidates toggle-->
+		
 		<!--genrate board btns-->
-	
-		<button type="button" class="js-generate-board-btn--easy js-generate-board btn-outline-dark btn">Noob</button>
-		<button type="button" class="js-generate-board-btn--medium js-generate-board btn-outline-dark btn">Intermediate</button>
-		<button type="button" class="js-generate-board-btn--hard js-generate-board btn-outline-dark btn">Mastermind</button>
-		<button type="button" class="js-generate-board-btn--very-hard js-generate-board btn-outline-dark btn" >Pro</button>
-
+		<div class="button_after_practice_mode hidden2">
+			<button type="button" class="js-generate-board-btn--easy js-generate-board btn-outline-dark btn">Noob</button>
+			<button type="button" class="js-generate-board-btn--medium js-generate-board btn-outline-dark btn">Intermediate</button>
+			<button type="button" class="js-generate-board-btn--hard js-generate-board btn-outline-dark btn">Mastermind</button>
+			<button type="button" class="js-generate-board-btn--very-hard js-generate-board btn-outline-dark btn" >Pro</button>
+		</div>
+		<div class="hidden candidates">
+			<label for="toggleCandidates">Show hints </label><input id="toggleCandidates" class="js-candidate-toggle" type="checkbox"/>
+		</div>
 
 		<!--the only required html-->
 		<div id="sudoku" class="sudoku-board hidden">
 		</div>
 		<div class="hidden krr">
 			<!--solve buttons-->
-			Solve: <button type="button" class="js-solve-step-btn">One Step</button><button type="button" class="js-solve-all-btn">All</button>
+			Solve: <button type="button" class="js-solve-step-btn">One Step</butto><button type="button" class="js-solve-all-btn">All</button>
 			<br>
 			<!--clear board btn-->
 			Clear: <button type="button" class="js-clear-board-btn">Board</button>
@@ -86,7 +86,7 @@
 		<p>
 			Made with
 			<i class="fa fa-heart" style="color: red" aria-hidden="true"></i> By
-			Aakash and Deepak
+			Abhinandan Sharma
 		</p>
 	</footer>
 	<script>
@@ -134,5 +134,41 @@
 		$candidateToggle.trigger("change");
 	</script>
 	<script src="script.js"></script>
-	</body>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">	
+      <script src="/socket.io/socket.io.js"></script>
+	<script src="/nanoid/nanoid.js"></script>
+
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDqFVL5he87qI8hg20ngdkls9jTRXCIX7M",
+    authDomain: "brain-teaser-77a8d.firebaseapp.com",
+    databaseURL: "https://brain-teaser-77a8d.firebaseio.com",
+    projectId: "brain-teaser-77a8d",
+    storageBucket: "brain-teaser-77a8d.appspot.com",
+    messagingSenderId: "367467694538",
+    appId: "1:367467694538:web:e6acd6456f7e0cdb372733",
+    measurementId: "G-1HBCV05JGG"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+</body>
+	
 </html>

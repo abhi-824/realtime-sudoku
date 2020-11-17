@@ -1,6 +1,6 @@
+
 let timer = document.querySelector('.timer');
 console.log(timer);
-startTimer(60 * 60, timer);
 function startTimer(duration, display) {
 	var timer = duration,
 		minutes,
@@ -22,13 +22,20 @@ function startTimer(duration, display) {
 }
 let gen_btn = document.querySelectorAll('.js-generate-board');
 console.log(gen_btn)
-
+document.querySelector(".practiceMode").addEventListener("click",(e)=>{
+	e.preventDefault();
+	document.querySelector(".button_after_practice_mode").classList.remove("hidden2");
+	document.querySelector(".modes").classList.add("side_hoja")
+})
 for (let i = 0; i < gen_btn.length; i++) {
 	gen_btn[i].addEventListener('click', () => {
         console.log("hh")
 		let pp = document.querySelectorAll('.hidden');
 		for (let i = 0; i < pp.length; i++) {
 			pp[i].classList.remove('hidden');
+			
+			startTimer(60 * 60, timer);
+
 		}
 	});
 }
