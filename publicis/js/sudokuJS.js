@@ -254,7 +254,6 @@
 				nullCandidateList.push(null);
 			}
 			generateHouseIndexList();
-
 			if(!alreadyEnhanced){
 				//enhance board to handle candidates, and possibly other params
 				for(var j=0; j < boardSize*boardSize ; j++){

@@ -18,8 +18,11 @@
   },
   "homepage": "https://github.com/abhi-824/realtime-sudoku#readme",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "nanoid": "^3.1.16",
+    "peer": "^0.5.3",
+    "socket.io": "^3.0.3",
     "socketio": "^1.0.0"
   },
   "devDependencies": {

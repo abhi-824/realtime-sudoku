@@ -179,6 +179,85 @@ footer p{
 	/* transform:translateY(0) ; */
 
 }
+
+.formdd {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+  align-items: center;
+  grid-gap:1rem;
+  margin:3rem;
+}
+.formdd input{
+  padding:0.2rem;
+  background:rgb(245, 245, 245);
+  border-radius:0.5rem;
+}
+.formdd button{
+  border:none;
+  background:rgb(90, 47, 190);
+  color:#fff;
+  padding:0.4rem 1rem;
+  border-radius:1rem;
+}
+
+.google-sign-in img{
+	width:40px;
+	height:40px;
+	}
+.formdd button:hover{
+  border: solid 1px rgb(90, 47, 190);
+  background-color: white;
+  color:rgb(90, 47, 190);
+  transition: 0.5s; 
+}
+.side_hoja_parli{
+	transform: translateX(250%) translateY(0);
+
+}
 .hidden2{
 	display: none!important;
+}
+
+.hidden22{
+	display: none!important;
+}
+.login_form{
+	position: absolute;
+	left:40vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-top:5rem;
+	align-items: center;
+	grid-gap: 1.5rem;
+	transition: 0.5s;
+}
+.line{
+	width:200px;
+	height:2px;
+	
+	background-color: #80808093;
+}
+
+.video-grid{
+	position: absolute;
+	top:0;
+	right:0;
+	display: flex;
+	
+}
+video{
+    height: 150px;
+	width: 150px;
+	border-radius: 50%;
+    background:#333;
+	object-fit: cover;
+	padding:0.2rem;
+	margin:1rem;
+}
+.buttons{
+	display:flex;
+	justify-content: center;
+	align-items: center;
 }
