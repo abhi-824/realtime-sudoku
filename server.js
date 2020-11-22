@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
 			
 		}
 	});
-	socket.on('join-room',(roomId,userId)=>{
+	socket.on('join-room',(userId,roomId,username)=>{
 		const user = userJoin(socket.id, userId, roomId);
 		console.log(roomId,user.room);
 		socket.join(roomId)
@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
 			.to(user.room)
 			.emit(
 				'message',
-				`${user.username} has joined the room`
+				`${username} has joined the room`
 			);
 		socket.to(roomId).broadcast.emit('user-connected',userId)
 	})

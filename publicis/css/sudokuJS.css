@@ -291,7 +291,7 @@ video {
 	box-shadow: -8px 2px 27px -5px rgba(0, 0, 0, 0.5);
 }
 .disappear {
-	animation: vanish 4s forwards;
+	animation: vanish 6s forwards;
 }
 @keyframes vanish {
 	100% {
