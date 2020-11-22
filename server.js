@@ -2,6 +2,16 @@
 const path = require('path');
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 
+const {
+	userJoin,
+	getCurrentUser,
+	userLeave,
+	getRoomUsers,
+	make_ready,
+	allready,
+	giveProblems,
+} = require('./utils/users');
+
 const http = require('http');
 const host = '0.0.0.0';
 const PORT = process.env.PORT || 3000;
@@ -22,9 +32,40 @@ const io = socketio(server);
 
 io.on('connection', (socket) => {
 	console.log('new ws connection');
+	socket.on('disconnect', () => {
+		const user = userLeave(socket.id);
+		if (user) {
+			io.to(user.room).emit(
+				'message',
+				`${user.username} has left the chat`
+			);
+			io.to(user.room).emit('roomUsers', {
+				room: user.room,
+				users: getRoomUsers(user.room),
+			});
+		}
+	});
+	
+	socket.on('ready', ({ username, room }) => {	
+		const user = make_ready(socket.id, username, room, 1);
+		const users = getRoomUsers(room);
+		if (allready(room)) {
+			
+			io.to(user.room).emit('start_sudoku', sudoku_board);
+			
+		}
+	});
 	socket.on('join-room',(roomId,userId)=>{
+		const user = userJoin(socket.id, userId, roomId);
+		console.log(roomId,user.room);
 		socket.join(roomId)
 		console.log("heel")
+		socket.broadcast
+			.to(user.room)
+			.emit(
+				'message',
+				`${user.username} has joined the room`
+			);
 		socket.to(roomId).broadcast.emit('user-connected',userId)
 	})
 

@@ -47,7 +47,10 @@
 	<body>
 
 
-		
+		<div class="loader hidden">
+			<img src="res/45.gif" alt="">
+			<p>Loading...</p>
+		</div>
 	<div class="wrap">
 		<!-- <h1>S	udokuJS demo with board generation</h1> -->
 		<div class="timer hidden"></div>
@@ -64,7 +67,7 @@
 			<button type="button" class="js-generate-board-btn--easy js-generate-board btn-outline-dark btn">Noob</button>
 			<button type="button" class="js-generate-board-btn--medium js-generate-board btn-outline-dark btn">Intermediate</button>
 			<button type="button" class="js-generate-board-btn--hard js-generate-board btn-outline-dark btn">Mastermind</button>
-			<button type="button" class="js-generate-board-btn--very-hard js-generate-board btn-outline-dark btn" >Pro</button>
+			<button type="button" class="js-generate-board-btn--very-hard js-generate-board btn-outline-dark btn">Pro</button>
 		</div>
 		<div class="hidden candidates">
 			<label for="toggleCandidates">Show hints </label><input id="toggleCandidates" class="js-candidate-toggle" type="checkbox"/>
@@ -139,6 +142,8 @@
 		</div>
 	</div>
 	<div class="competitiveModeOn hidden">
+		<button class="btn btn-outline-danger logout">LOGOUT</button>
+		<button class="btn btn-outline-dark hidden ready_btn">READY</button>
 		<div class="buttons">
 			<button class="btn btn-outline-success join_room">Join a Room</button>
 			<button class="btn btn-outline-yellow create_one">Create One</button>

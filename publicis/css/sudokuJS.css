@@ -5,7 +5,7 @@
 */
 @import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee+Shade&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-*{
+* {
 	font-family: 'Poppins';
 }
 .sudoku-board {
@@ -120,41 +120,41 @@
 	background-color: red;
 	color: white;
 }
-.timer{
+.timer {
 	position: absolute;
-	top:0;
-	right:0;
-	color:#fff;
-	padding:1rem;
-	background:rgb(138, 152, 231);
+	top: 0;
+	right: 0;
+	color: #fff;
+	padding: 1rem;
+	background: rgb(138, 152, 231);
 }
 
-.heading{
+.heading {
 	font-family: 'AudioWide';
 	position: absolute;
-	top:0;
-	left:0;
-	padding:1rem;
+	top: 0;
+	left: 0;
+	padding: 1rem;
 }
 
-footer{
-	text-align:center;
+footer {
+	text-align: center;
 }
-footer p{
+footer p {
 	font-family: 'AudioWide';
-	position:absolute;
-	bottom:0;
-	left:40%;
+	position: absolute;
+	bottom: 0;
+	left: 40%;
 }
-.hidden{
-	display:none!important;
+.hidden {
+	display: none !important;
 }
-.modes{
+.modes {
 	position: absolute;
 	/* width:100%;
 	height: 100%; */
-	top:0;
-	left:0;
+	top: 0;
+	left: 0;
 	display: flex;
 	flex-direction: column;
 	transform: translateX(250%) translateY(100%);
@@ -162,102 +162,140 @@ footer p{
 	justify-content: center;
 	transition: 0.5s;
 }
-.wrap{
-	padding:1rem;
+.wrap {
+	padding: 1rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-.modes .btn{
-	padding:0.9rem 1.3rem;
+.modes .btn {
+	padding: 0.9rem 1.3rem;
 	margin: 2rem;
 }
-.side_hoja{
+.side_hoja {
 	transform: translateX(0%) translateY(40%);
-	left:0;
+	left: 0;
 	/* transform:translateY(0) ; */
-
 }
 
 .formdd {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-  align-items: center;
-  grid-gap:1rem;
-  margin:3rem;
+	align-items: center;
+	grid-gap: 1rem;
+	margin: 3rem;
 }
-.formdd input{
-  padding:0.2rem;
-  background:rgb(245, 245, 245);
-  border-radius:0.5rem;
+.formdd input {
+	padding: 0.2rem;
+	background: rgb(245, 245, 245);
+	border-radius: 0.5rem;
 }
-.formdd button{
-  border:none;
-  background:rgb(90, 47, 190);
-  color:#fff;
-  padding:0.4rem 1rem;
-  border-radius:1rem;
+.formdd button {
+	border: none;
+	background: rgb(90, 47, 190);
+	color: #fff;
+	padding: 0.4rem 1rem;
+	border-radius: 1rem;
 }
 
-.google-sign-in img{
-	width:40px;
-	height:40px;
-	}
-.formdd button:hover{
-  border: solid 1px rgb(90, 47, 190);
-  background-color: white;
-  color:rgb(90, 47, 190);
-  transition: 0.5s; 
+.google-sign-in img {
+	width: 40px;
+	height: 40px;
 }
-.side_hoja_parli{
+.formdd button:hover {
+	border: solid 1px rgb(90, 47, 190);
+	background-color: white;
+	color: rgb(90, 47, 190);
+	transition: 0.5s;
+}
+.side_hoja_parli {
 	transform: translateX(250%) translateY(0);
+}
+.hidden2 {
+	display: none !important;
+}
 
+.hidden22 {
+	display: none !important;
 }
-.hidden2{
-	display: none!important;
-}
-
-.hidden22{
-	display: none!important;
-}
-.login_form{
+.login_form {
 	position: absolute;
-	left:40vw;
+	left: 40vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	margin-top:5rem;
+	margin-top: 5rem;
 	align-items: center;
 	grid-gap: 1.5rem;
 	transition: 0.5s;
 }
-.line{
-	width:200px;
-	height:2px;
-	
+.line {
+	width: 200px;
+	height: 2px;
+
 	background-color: #80808093;
 }
 
-.video-grid{
+.video-grid {
 	position: absolute;
-	top:0;
-	right:0;
+	top: 0;
+	right: 0;
 	display: flex;
-	
 }
-video{
-    height: 150px;
+video {
+	height: 150px;
 	width: 150px;
 	border-radius: 50%;
-    background:#333;
+	background: #333;
 	object-fit: cover;
-	padding:0.2rem;
-	margin:1rem;
+	padding: 0.2rem;
+	margin: 1rem;
 }
-.buttons{
-	display:flex;
+.buttons {
+	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.logout {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.loader {
+	position: absolute;
+	min-height: 100vh;
+	min-width: 100vw;
+	z-index: 10000;
+	display: flex;
+	flex-direction: column;
+	grid-gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+}
+.ready_btn {
+	position: absolute;
+	top: 40vh;
+	left: 40vw;
+}
+.notification {
+	position: absolute;
+	bottom: 0;
+	z-index: 10000;
+	right: 0;
+	padding: 1rem;
+	-webkit-box-shadow: -8px 2px 27px -5px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: -8px 2px 27px -5px rgba(0, 0, 0, 0.5);
+	box-shadow: -8px 2px 27px -5px rgba(0, 0, 0, 0.5);
+}
+.disappear {
+	animation: vanish 4s forwards;
+}
+@keyframes vanish {
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
 }
