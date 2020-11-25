@@ -206,8 +206,8 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
           }
           var peer = new Peer({
             // secure: true,
-            host: "/",
-            port: "3000",
+            host: "brainteaser.herokuapp.com",
+            port: "",
             path: "/peerjs",
           });
           console.log(peer);
