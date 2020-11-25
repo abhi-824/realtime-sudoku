@@ -22,7 +22,7 @@ var { nanoid } = require("nanoid");
 var ID = nanoid(4);
 
 
-console.log(ID);
+// console.log(ID);
 const app = express();
 
 const server = http.createServer(app);
@@ -46,20 +46,25 @@ io.on('connection', (socket) => {
 		}
 	});
 	
-	socket.on('ready', ({ username, room }) => {	
+	socket.on('make_ready', ({ username, room }) => {	
+		console.log(room)
 		const user = make_ready(socket.id, username, room, 1);
 		const users = getRoomUsers(room);
+		console.log(users);
 		if (allready(room)) {
-			
-			io.to(user.room).emit('start_sudoku', sudoku_board);
+			io.to(socket.id).emit('start_sudoku');
 			
 		}
 	});
+	socket.on('make_it_real',(data,room)=>{
+		console.log("yes");
+		io.to(room).emit('start_game',data);	
+	})
 	socket.on('join-room',(userId,roomId,username)=>{
-		const user = userJoin(socket.id, userId, roomId);
-		console.log(roomId,user.room);
+		const user = userJoin(socket.id, userId,roomId);
+		// console.log(roomId,user.room);
 		socket.join(roomId)
-		console.log("heel")
+		// console.log("heel")
 		socket.broadcast
 			.to(user.room)
 			.emit(
@@ -71,7 +76,7 @@ io.on('connection', (socket) => {
 
 });
 app.get('/', (req, res) => {
-	console.log("helklo")
+	// console.log("helklo")
 	res.redirect(`${ID}`);
 }); 
 //django unchained

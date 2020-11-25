@@ -250,6 +250,10 @@ video {
 	border-radius: 50%;
 	background: #333;
 	object-fit: cover;
+	display: flex;
+	justify-content: baseline;
+	align-items: center;
+	grid-gap:0.3rem;
 	padding: 0.2rem;
 	margin: 1rem;
 }
@@ -298,4 +302,31 @@ video {
 		opacity: 0;
 		visibility: hidden;
 	}
+}
+
+.disappear2 {
+	animation: vanish 0.5s forwards;
+}
+@keyframes vanish {
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+.icons{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	transition: 0.5s;
+}
+.icons img{
+	padding:0.3rem;
+	border-radius: 50%;
+	border: #333;
+	height:30px;
+}
+#sudoku2{
+	position: absolute;
+	transform: translateX(100%) translateY(30%);
 }

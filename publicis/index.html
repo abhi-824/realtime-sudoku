@@ -46,7 +46,7 @@
 
 	<body>
 
-
+<!-- <img src="res/mic.svg" alt=""> -->
 		<div class="loader hidden">
 			<img src="res/45.gif" alt="">
 			<p>Loading...</p>
@@ -99,17 +99,16 @@
 				<button class="btn btn-outline-dark login_as_guest">Login As Guest</button>	
 				<p>OR</p>
 				<div class="line"></div>
-				<button class="btn btn-outline-success google-sign-in"><img src="google-logo.png" alt="">	</button>	
+				<button class="btn btn-outline-success google-sign-in"><img src="res/google-logo.png" alt="">	</button>	
 				
 			</div>
 			<form action="#" id="signup-form" class="hidden formdd">
-				<input type="text" placeholder="Codeforces handle" id="signup-handle" required />
+				<input type="text" placeholder="Username" id="signup-handle" required />
 				<input type="email" placeholder="Email" id="signup-email" />
 				<input type="password" placeholder="Password" id="signup-password" required />
 				<button type="submit">Sign Up</button>
 			 </form>
 			 <form action="#" id="login-form" class="hidden formdd">
-				
 				<input type="email"  placeholder="Email" id="login-email" required />
 				<input type="password" id="login-password" placeholder="Password" />
 				<a href="#" class="forgot_pass">Forgot Password? Relax, We got you cover</a>
@@ -119,7 +118,7 @@
 			 <form action="#" id="login-as-guest-form" class="hidden formdd">
                      
                   
-				<input id="handle-login-as-guest" placeholder="Codeforces handle" required/>
+				<input id="handle-login-as-guest" placeholder="Username" required/>
 			   
 				<!-- <a href="#">Forgot your password?</a> -->
 				<button type="submit">Sign In as a Guest</button>
@@ -133,9 +132,9 @@
 				<button class="back-login">Back to login</button>
 			 </div>
 			 <div class="ask_handle formdd hidden">
-				<h2>Enter Codeforces handle</h2>
+				<h2>Enter Username</h2>
 				<form action="">
-				   <input type="text" class="ask_handle_val" placeholder="Enter codeforces handle">
+				   <input type="text" class="ask_handle_val" placeholder="Enter Username">
 				   <button class="ask-handle-submit" type="submit">Submit</button>
 				</form>
 			 </div>
@@ -164,7 +163,7 @@
 		<p>
 			Made with
 			<i class="fa fa-heart" style="color: red" aria-hidden="true"></i> By
-			Abhinandan Sharma
+			Aakash and Deepak
 		</p>
 	</footer>
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -247,7 +246,6 @@
 		});
 		$candidateToggle.trigger("change");
 	</script>
-	<script src="js/script.js"></script>
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <!-- Google Fonts -->
@@ -256,31 +254,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">	
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-app.js"></script>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-<script src="https://www.gstatic.com/firebasejs/8.0.2/firebase-analytics.js"></script>
 
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  var firebaseConfig = {
-    apiKey: "AIzaSyDqFVL5he87qI8hg20ngdkls9jTRXCIX7M",
-    authDomain: "brain-teaser-77a8d.firebaseapp.com",
-    databaseURL: "https://brain-teaser-77a8d.firebaseio.com",
-    projectId: "brain-teaser-77a8d",
-    storageBucket: "brain-teaser-77a8d.appspot.com",
-    messagingSenderId: "367467694538",
-    appId: "1:367467694538:web:e6acd6456f7e0cdb372733",
-    measurementId: "G-1HBCV05JGG"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-</script>
-
+<script src="js/script.js"></script>
 </body>
-	
+
 </html>

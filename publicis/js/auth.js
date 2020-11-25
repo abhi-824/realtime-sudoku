@@ -1,6 +1,8 @@
 // for signup
 
 const auth = firebase.auth();
+var user ;
+
 const db = firebase.firestore();
 let fname;
 auth.onAuthStateChanged((user) => {
@@ -34,6 +36,7 @@ auth.onAuthStateChanged((user) => {
 const signupform = document.querySelector('#signup-form');
 const forgotform = document.querySelector('#forgot');
 signupform.addEventListener('submit', (e) => {
+	loaderfor1sec();
 	const email = signupform['signup-email'].value;
 	const Name = signupform['signup-handle'].value;
 	const pwd = signupform['signup-password'].value;
@@ -63,6 +66,7 @@ signupform.addEventListener('submit', (e) => {
 const loginForm = document.querySelector('#login-form');
 loginForm.addEventListener('submit', (e) => {
 	e.preventDefault();
+	loaderfor1sec();
 	const email = loginForm['login-email'].value;
 	const pwd = loginForm['login-password'].value;
 

@@ -1,5 +1,6 @@
 var socket = io();
 let room = window.location.href.split("/")[3];
+let elem = document.createElement("div");
 
 let timer = document.querySelector(".timer");
 
@@ -31,6 +32,7 @@ console.log(gen_btn);
 
 document.querySelector(".practiceMode").addEventListener("click", (e) => {
   e.preventDefault();
+  loaderfor1sec();
   document
     .querySelector(".button_after_practice_mode")
     .classList.remove("hidden2");
@@ -40,16 +42,25 @@ document.querySelector(".practiceMode").addEventListener("click", (e) => {
 for (let i = 0; i < gen_btn.length; i++) {
   gen_btn[i].addEventListener("click", () => {
     console.log("hh");
-    let pp = document.querySelectorAll(".hidden");
-    for (let i = 0; i < pp.length; i++) {
-      pp[i].classList.remove("hidden");
-
-      startTimer(60 * 60, timer);
-    }
+    loaderfor1sec();
+    document.querySelector(".sudoku-board").classList.remove("hidden");
+    document.querySelector(".krr").classList.remove("hidden");
+    document.querySelector(".candidates").classList.remove("hidden");
+    document.querySelector(".timer").classList.remove("hidden");
+    startTimer(60 * 60, timer);
   });
 }
 
 document.querySelector(".competitiveMode").addEventListener("click", (e) => {
+  document.querySelector("footer").classList.add("hidden");
+  loaderfor1sec();
+  document
+    .querySelector(".button_after_practice_mode")
+    .classList.add("hidden2");
+  document.querySelector(".sudoku-board").classList.add("hidden");
+  document.querySelector(".krr").classList.add("hidden");
+  document.querySelector(".candidates").classList.add("hidden");
+  document.querySelector(".timer").classList.add("hidden");
   e.preventDefault();
 });
 
@@ -116,8 +127,31 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
         .addEventListener("submit", (e) => {
           e.preventDefault();
           room = document.querySelector(".ask_room").value;
+
+          let ready = document.querySelector(".ready_btn");
+          ready.addEventListener("click", () => {
+            ready.classList.remove("btn-outline-dark");
+            ready.classList.remove("btn-primary");
+            let user = firebase.auth().currentUser;
+
+            db.collection("users")
+              .where("email", "==", user.email)
+              .get()
+              .then((snapshot) => {
+                snapshot.docs.forEach((doc) => {
+                  const handle_list = doc.data();
+                  if (handle_list.email === user.email) {
+                    let fname = handle_list.name;
+                    console.log(room)
+                    socket.emit("make_ready", {fname, room});
+                    console.log(fname);
+                  }
+                });
+              });
+          });
           const video_grid = document.querySelector(".video-grid");
           const myvideo = document.createElement("video");
+          myvideo.muted = true;
           navigator.mediaDevices
             .getUserMedia({
               video: true,
@@ -146,7 +180,19 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
               video.play();
             });
             console.log("he");
-            video_grid.appendChild(video);
+            let div = document.createElement("div");
+            div.appendChild(video);
+            elem.innerHTML =
+              '<img src="res/mic.svg" class="mic-icon enable" alt=""> <img src="res/video.svg" class="vid-icon enable" alt="">';
+            elem.classList.add("icons");
+            div.appendChild(elem);
+            video_grid.appendChild(div);
+
+            document
+              .querySelector(".mic-icon")
+              .addEventListener("click", () => {
+                myvideo.muted = !myvideo.muted;
+              });
           }
           function connectToNewUser(userId, stream) {
             const call = peer.call(userId, stream);
@@ -176,7 +222,7 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
                   if (handle_list.email === user.email) {
                     let fname = handle_list.name;
 
-                    socket.emit("join-room", id,room, fname);
+                    socket.emit("join-room", id, room, fname);
                     console.log(fname);
                   }
                 });
@@ -197,25 +243,22 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
   document.querySelector(".modes").classList.add("side_hoja");
 });
 
-function dashboard(name, handle_list) {}
+function dashboard(name, handle_list) {
+  document.querySelector(".login_page").classList.add("hidden");
+}
 
 document.querySelector(".logout").addEventListener("click", (e) => {
   e.preventDefault();
   auth.signOut();
   document.querySelector(".competitiveModeOn").classList.add("hidden");
+  document.querySelector(".login_page").classList.remove("hidden");
 });
 function loaderfor1sec() {
   document.querySelector(".loader").classList.remove("hidden");
   window.setTimeout(() => {
     document.querySelector(".loader").classList.add("hidden");
-  }, 1000);
+  }, 600);
 }
-let ready = document.querySelector(".ready_btn");
-ready.addEventListener("click", () => {
-  ready.classList.remove("btn-outline-dark");
-  ready.classList.remove("btn-primary");
-  socket.emit("make_ready", id);
-});
 socket.on("message", (msg) => {
   display(msg);
 });
@@ -229,3 +272,15 @@ function display(str) {
   }, 2000);
   document.body.appendChild(div);
 }
+socket.on('start_sudoku',()=>{
+  console.log(room);  
+  socket.emit('make_it_real',document.querySelector('#sudoku2').innerHTML,room);
+
+})
+socket.on('start_game',(data)=>{
+  loaderfor1sec();
+  document.querySelector('#sudoku2').innerHTML=data;
+  console.log(data);  
+  document.querySelector('#sudoku2').classList.remove('hidden');
+  document.querySelector('.ready_btn').classList.add('hidden');
+}) 
