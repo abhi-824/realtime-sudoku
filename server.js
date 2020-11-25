@@ -53,7 +53,6 @@ io.on('connection', (socket) => {
 		console.log(users);
 		if (allready(room)) {
 			io.to(socket.id).emit('start_sudoku');
-			
 		}
 	});
 	socket.on('make_it_real',(data,room)=>{
