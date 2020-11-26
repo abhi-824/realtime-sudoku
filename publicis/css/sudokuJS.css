@@ -18,7 +18,7 @@ body {
 .containerForOverlay{
 	position: absolute;
 	min-height:100vh;
-	min-width:100vw;
+	min-width:99.5vw;
 	background:rgba(0, 0, 0, 0.486);
 }
 .sudoku-board {
@@ -389,6 +389,17 @@ button {
     0 0 200px rgb(151, 10, 10) !important;
 }
 
+.logout{
+  border:1px solid rgb(214, 30, 30);
+  color:  rgb(214, 30, 30);
+}
+.logout:hover {
+  background: rgb(151, 10, 10);
+  color: #fff;
+  box-shadow: 0 0 5px rgb(151, 10, 10), 0 0 25px rgb(151, 10, 10), 0 0 50px rgb(151, 10, 10),
+    0 0 200px rgb(151, 10, 10) !important;
+}
+
 .noob {
   color: #1d21ff;
   border:1px solid #1014ff;
@@ -482,4 +493,48 @@ button {
   color: #000;
   box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
     0 0 200px #d8d8d8 !important;
+}
+.js-solve-all-btn{
+  padding:0.3rem;
+  color: #d8d8d8;
+  border:1px solid #d8d8d8; 
+}
+
+.js-solve-all-btn:hover {
+  background: #d8d8d8;
+  color: #000;
+  box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
+    0 0 200px #d8d8d8 !important;
+}
+
+.ready_btn{
+  padding:0.5rem 0.7rem;
+  color: #d8d8d8;
+  border:1px solid #d8d8d8; 
+}
+
+.ready_btn:hover {
+  background: #d8d8d8;
+  color: #000;
+  box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
+    0 0 200px #d8d8d8 !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e6e6e6;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(44, 44, 44);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
