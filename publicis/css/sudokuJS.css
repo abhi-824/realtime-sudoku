@@ -145,9 +145,9 @@ body {
   font-family: "AudioWide";
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0;	
   padding: 1rem;
-  font-size: 3rem;
+  font-size: 2.5rem;
   text-align: center;
    font-weight: bold;
   -webkit-animation: glow 2s ease-in-out infinite alternate;
@@ -291,6 +291,7 @@ video {
 }
 .loader {
   position: absolute;
+  font-size: 3rem;
   min-height: 100vh;
   min-width: 100vw;
   z-index: 10000;
@@ -300,6 +301,7 @@ video {
   justify-content: center;
   align-items: center;
   background: rgb(0, 0, 0);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 .ready_btn {
   position: absolute;
