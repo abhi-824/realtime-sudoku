@@ -150,6 +150,7 @@ body {
   font-size: 3rem;
   text-align: center;
    font-weight: bold;
+   
   -webkit-animation: glow 2s ease-in-out infinite alternate;
   -moz-animation: glow 2s ease-in-out infinite alternate;
   animation: glow 2s ease-in-out infinite alternate;
@@ -290,6 +291,7 @@ video {
   right: 0;
 }
 .loader {
+  font-size: 3rem;
   position: absolute;
   min-height: 100vh;
   min-width: 100vw;
@@ -300,6 +302,7 @@ video {
   justify-content: center;
   align-items: center;
   background: rgb(0, 0, 0);
+  animation: glow 2s ease-in-out infinite alternate;
 }
 .ready_btn {
   position: absolute;
@@ -353,6 +356,8 @@ video {
   transform: translateX(100%) translateY(30%);
 }
 button {
+  font-style: bold;
+  font-weight: 900;
   transition: 0.5s;
   padding: 1rem 1rem;
   border: none;
@@ -379,4 +384,51 @@ button {
   color: #fff;
   box-shadow: 0 0 5px rgb(151, 10, 10), 0 0 25px rgb(151, 10, 10), 0 0 50px rgb(151, 10, 10),
     0 0 200px rgb(151, 10, 10) !important;
+}
+
+.noob {
+  color: #1d21ff;
+  border:1px solid #1014ff;
+  
+}
+.noob:hover {
+  background: #2c2ea1;
+  color: #fff;
+  box-shadow: 0 0 5px #2c2ea1, 0 0 25px #2c2ea1, 0 0 50px #2c2ea1,
+    0 0 200px #2c2ea1 !important;
+}
+
+.pro {
+  color: #d6ff1d;
+  border:1px solid #d6ff1d;
+  
+}
+.pro:hover {
+  background: #d6ff1d;
+  color: #fff;
+  box-shadow: 0 0 5px #d6ff1d, 0 0 25px #d6ff1d, 0 0 50px #d6ff1d,
+    0 0 200px #d6ff1d !important;
+}
+
+.mastermind {
+  color: #1dffe1;
+  border:1px solid #1dffe1;
+  
+}
+.mastermind:hover {
+  background: #1dffe1;
+  color: #fff;
+  box-shadow: 0 0 5px #1dffe1, 0 0 25px #1dffe1, 0 0 50px #1dffe1,
+    0 0 200px #1dffe1 !important;
+}
+.intermediate {
+  color: #ff1dd9;
+  border:1px solid #ff1dd9;
+  
+}
+.intermediate:hover {
+  background: #ff1dd9;
+  color: #fff;
+  box-shadow: 0 0 5px #ff1dd9, 0 0 25px #ff1dd9, 0 0 50px #ff1dd9,
+    0 0 200px #ff1dd9 !important;
 }
