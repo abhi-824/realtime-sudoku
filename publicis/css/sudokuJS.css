@@ -9,16 +9,17 @@
   font-family: "Poppins";
 }
 body {
-  background-color: #000 !important;
+  background-color: rgb(51, 51, 51) !important;
   color:rgb(209, 209, 209)!important;
   min-height: 100vh;
-  background: url('../res/kieran-wood-UOk1ghQ7juY-unsplash.jpg') center center/cover no-repeat;
+  background: url('../res/harpal-singh-eY9nCR7G0xw-unsplash.jpg') center center/cover no-repeat;
+  background-attachment: fixed;
 }
 .containerForOverlay{
 	position: absolute;
 	min-height:100vh;
 	min-width:100vw;
-	background:rgba(0, 0, 0, 0.767);
+	background:rgba(0, 0, 0, 0.486);
 }
 .sudoku-board {
   min-height: 22.75rem;
@@ -186,7 +187,7 @@ footer p {
   transition: 0.5s;
 }
 .wrap {
-  padding: 1rem;
+  /* padding: 1rem; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -197,7 +198,8 @@ footer p {
   margin: 2rem;
 }
 .side_hoja {
-  transform: translateX(0%) translateY(40%);
+  /* transform: translateX(-50%); */
+  margin-top: 0;
   left: 0;
   /* transform:translateY(0) ; */
 }
@@ -367,8 +369,8 @@ button {
   --webkit-box-reflect: below;
 }
 .practiceMode {
-  color: #2a8f3b;
-  border:1px solid #2a8f3b;
+  color: #22cf3f;
+  border:1px solid #22cf3f;
 }
 .practiceMode:hover {
   background: #2a8f3b;
@@ -377,8 +379,8 @@ button {
     0 0 200px #2a8f3b !important;
 }
 .competitiveMode{
-  border:1px solid rgb(151, 10, 10);
-  color: rgb(151, 10, 10);
+  border:1px solid rgb(214, 30, 30);
+  color:  rgb(214, 30, 30);
 }
 .competitiveMode:hover {
   background: rgb(151, 10, 10);
@@ -423,7 +425,7 @@ button {
     0 0 200px #1dffe1 !important;
 }
 .intermediate {
-  color: #ff1dd9;
+  color: #ac1dff;
   border:1px solid #ff1dd9;
   
 }
@@ -432,4 +434,52 @@ button {
   color: #fff;
   box-shadow: 0 0 5px #ff1dd9, 0 0 25px #ff1dd9, 0 0 50px #ff1dd9,
     0 0 200px #ff1dd9 !important;
+}
+
+.join_room {
+  color: #30ff1d;
+  border:1px solid #2a8f3b;
+  
+}
+.join_room:hover {
+  background: #2a8f3b;
+  color: #fff;
+  box-shadow: 0 0 5px #2a8f3b, 0 0 25px #2a8f3b, 0 0 50px #2a8f3b,
+    0 0 200px #2a8f3b !important;
+}
+
+.create_one {
+  color: #181aaf;
+  border:1px solid #181aaf;
+  
+}
+.create_one:hover {
+  background: #181aaf;
+  color: #fff;
+  box-shadow: 0 0 5px #181aaf, 0 0 25px #181aaf, 0 0 50px #181aaf,
+    0 0 200px #181aaf !important;
+}
+.js-solve-step-btn{
+  padding:0.3rem;
+  color: #d8d8d8;
+  border:1px solid #d8d8d8; 
+}
+
+.js-solve-step-btn:hover {
+  background: #d8d8d8;
+  color: #000;
+  box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
+    0 0 200px #d8d8d8 !important;
+}
+.js-clear-board-btn{
+  padding:0.3rem;
+  color: #d8d8d8;
+  border:1px solid #d8d8d8; 
+}
+
+.js-clear-board-btn:hover {
+  background: #d8d8d8;
+  color: #000;
+  box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
+    0 0 200px #d8d8d8 !important;
 }

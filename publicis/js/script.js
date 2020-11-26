@@ -37,6 +37,7 @@ document.querySelector(".practiceMode").addEventListener("click", (e) => {
     .querySelector(".button_after_practice_mode")
     .classList.remove("hidden2");
   document.querySelector(".modes").classList.add("side_hoja");
+  document.querySelector('footer').classList.add('hidden');
 });
 
 for (let i = 0; i < gen_btn.length; i++) {
