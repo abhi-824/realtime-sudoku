@@ -206,8 +206,8 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
           }
           var peer = new Peer({
             // secure: true,
-            host: "/",
-            port: "3000",
+            host: "brainteaser.herokuapp.com",
+            port: "",
             path: "/peerjs",
           });
           console.log(peer);
@@ -235,7 +235,6 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
 
           loaderfor1sec();
         });
-      document.querySelector(".create_one");
     } else {
       document.querySelector(".login_form").classList.remove("hidden22");
     }
@@ -275,7 +274,6 @@ function display(str) {
 socket.on('start_sudoku',()=>{
   console.log(room);  
   socket.emit('make_it_real',document.querySelector('#sudoku2').innerHTML,room);
-
 })
 socket.on('start_game',(data)=>{
   loaderfor1sec();
