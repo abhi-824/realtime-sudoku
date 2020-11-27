@@ -19,7 +19,7 @@ body {
 .containerForOverlay{
 	position: absolute;
 	min-height:100vh;
-	min-width:100vw;
+	min-width:99.5vw;
 	background:rgba(0, 0, 0, 0.486);
 }
 .sudoku-board {
@@ -391,6 +391,17 @@ button {
   color:  rgb(214, 30, 30);
 }
 .competitiveMode:hover {
+  background: rgb(151, 10, 10);
+  color: #fff;
+  box-shadow: 0 0 5px rgb(151, 10, 10), 0 0 25px rgb(151, 10, 10), 0 0 50px rgb(151, 10, 10),
+    0 0 200px rgb(151, 10, 10) !important;
+}
+
+.logout{
+  border:1px solid rgb(214, 30, 30);
+  color:  rgb(214, 30, 30);
+}
+.logout:hover {
   background: rgb(151, 10, 10);
   color: #fff;
   box-shadow: 0 0 5px rgb(151, 10, 10), 0 0 25px rgb(151, 10, 10), 0 0 50px rgb(151, 10, 10),
