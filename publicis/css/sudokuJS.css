@@ -13,6 +13,7 @@ body {
   color:rgb(209, 209, 209)!important;
   min-height: 100vh;
   background: url('../res/harpal-singh-eY9nCR7G0xw-unsplash.jpg') center center/cover no-repeat;
+  overflow-x: hidden;
   background-attachment: fixed;
 }
 .containerForOverlay{
@@ -23,14 +24,19 @@ body {
 }
 .sudoku-board {
   min-height: 22.75rem;
+  box-shadow: 0 0 5px #181aaf, 0 0 20px #181aaf, 0 0 90px #181aaf,
+    0 0 100px #181aaf !important;
   margin-bottom: 1em;
 }
 /*cell (wrapper) contains both cell input and candidates div*/
 .sudoku-board-cell {
   display: inline-block;
   position: relative;
-  border: 1px solid #ddd;
-  background: white;
+  color: #fff;
+  border: 1px solid rgb(233, 233, 233);
+  background: none;
+  box-shadow: 0 0 5px #181aaf, 0 0 5px #181aaf, 0 0 5px #181aaf,
+    0 0 5px #181aaf !important;
   max-width: 11.11111%;
 }
 /*rules for drawing the black lines dividing houses
@@ -64,18 +70,20 @@ body {
   background: none;
   font-size: 19.2px;
   font-size: 1.2rem;
+  color:#fff;
   text-align: center;
   width: 2em;
   max-width: 100%;
   height: 2em;
   border: 0;
+
   position: relative;
   z-index: 1; /*on top of candidates*/
 }
 
 /*highlight new input in board cell*/
 .sudoku-board-cell .highlight-val {
-  color: #00d;
+  color: rgb(217, 221, 0);
 }
 /*highligt incorrect input*/
 .sudoku-board-cell .board-cell--error {
@@ -136,7 +144,7 @@ body {
 .timer {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 1vw;
   color: #fff;
   padding: 1rem;
   background: rgb(138, 152, 231);
@@ -482,4 +490,39 @@ button {
   color: #000;
   box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
     0 0 200px #d8d8d8 !important;
+}
+.js-solve-all-btn{
+  padding:0.3rem;
+  color: #d8d8d8;
+  border:1px solid #d8d8d8; 
+ 
+}
+.js-solve-all-btn:hover {
+  background: #d8d8d8;
+  color: #000;
+  box-shadow: 0 0 5px #d8d8d8, 0 0 5px #d8d8d8, 0 0 25px #d8d8d8,
+    0 0 200px #d8d8d8 !important;
+}
+.ready_btn{
+  color: #1db100;
+  border:1px solid #1db100; 
+ 
+}
+.ready_btn:hover {
+  background: #1db100;
+  color: #000;
+  box-shadow: 0 0 5px #1db100, 0 0 5px #1db100, 0 0 25px #1db100,
+    0 0 200px #1db100 !important;
+}
+
+.logout{
+  color: #b10000;
+  border:1px solid #b10000; 
+ 
+}
+.logout:hover {
+  background: #b10000;
+  color: #000;
+  box-shadow: 0 0 5px #b10000, 0 0 5px #b10000, 0 0 25px #b10000,
+    0 0 200px #b10000 !important;
 }
