@@ -15,10 +15,6 @@ function make_ready(id, username, room, state) {
 }
 
 function allready(room) {
-	// for(let i=0;i<user_states.length;i++)
-	// {
-	// console.log(users);
-	// console.log(user_states
 	let cnt=0;
 	let cnt2=0;
 	for(let i=0;i<user_states.length;i++)
@@ -57,13 +53,23 @@ function getRoomUsers(room) {
 	console.log(users);
 	return users.filter((user) => user.room === room);
 }
-
+function check_room_avail(room){
+	for(let i=0;i<users.length;i++)
+	{
+		console.log(users[i]);
+		if(users[i].room===room){
+			return 1;
+		}
+	}
+	return 0;
+}
 module.exports = {
 	userJoin,
 	getCurrentUser,
 	userLeave,
 	getRoomUsers,
 	make_ready,
-	allready
+	allready,
+	check_room_avail
   // giveProblems
 };

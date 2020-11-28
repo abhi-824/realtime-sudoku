@@ -207,7 +207,7 @@ footer p {
 }
 .side_hoja {
   /* transform: translateX(-50%); */
-  margin-top: 0;
+  margin-top: 10vh;
   left: 0;
   /* transform:translateY(0) ; */
 }
@@ -536,4 +536,67 @@ button {
   color: #000;
   box-shadow: 0 0 5px #b10000, 0 0 5px #b10000, 0 0 25px #b10000,
     0 0 200px #b10000 !important;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+  box-shadow: 0 0 5px #181aaf, 0 0 25px #181aaf, 0 0 50px #181aaf, 0 0 200px #1db100 !important;
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #181aaf;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(0, 17, 255);
+}
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  transition: 0.5s;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  width: 50%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  transition: 0.5s;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  color:#000;
+  width: 50%!important; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
