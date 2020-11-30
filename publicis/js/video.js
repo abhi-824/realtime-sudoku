@@ -61,6 +61,7 @@ function videoOn() {
   console.log(peer);
   peer.on("open", (id) => {
     console.log("jhaod");
+    auth.onAuthStateChanged((user) => {
     db.collection("users")
       .where("email", "==", user.email)
       .get()
@@ -69,11 +70,12 @@ function videoOn() {
           const handle_list = doc.data();
           if (handle_list.email === user.email) {
             let fname = handle_list.name;
-
+            room=create_id;
             socket.emit("join-room", id, room, fname);
             console.log(fname);
           }
         });
       });
+    })
   });
 }

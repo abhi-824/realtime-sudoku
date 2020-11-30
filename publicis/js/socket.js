@@ -4,7 +4,7 @@ socket.on("start_sudoku", () => {
   socket.emit(
     "make_it_real",
     document.querySelector("#sudoku2").innerHTML,
-    room
+    create_id 
   );
 });
 socket.on("start_game", (data) => {

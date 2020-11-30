@@ -27,7 +27,7 @@ function allready(room) {
 	for(let i=0;i<users.length;i++)
 	{
 		if(users[i].room==room)
-		{
+		{ 
 			cnt2++;
 		}
 	}

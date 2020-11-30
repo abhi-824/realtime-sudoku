@@ -45,13 +45,14 @@ io.on("connection", (socket) => {
     const users = getRoomUsers(room);
     console.log(users);
     if (allready(room)) {
+      console.log(room)
       io.to(socket.id).emit("start_sudoku");
     }
   });
 
   socket.on("make_it_real", (data, room) => {
     console.log("yes");
-    io.to(room).emit("start_game", data);
+    socket.to(room).emit("start_game", data);
   });
 
   socket.on("join-room", (userId, roomId, username) => {
@@ -62,21 +63,22 @@ io.on("connection", (socket) => {
     socket.broadcast
       .to(user.room)
       .emit("message", `${username} has joined the room`);
-    io.to(roomId).broadcast.emit("user-connected", userId);
+      console.log(roomId)
+    socket.to(roomId).broadcast.emit("user-connected", userId);
   });
 
   socket.on("check_room_avail", (room) => {
-	  console.log(check_room_avail(room))
+    console.log(check_room_avail(room));
     if (check_room_avail(room)) {
       io.to(socket.id).emit("reply_to_room", 1);
     } else {
       io.to(socket.id).emit("reply_to_room", 0);
     }
   });
-  socket.on('req_id',()=>{
-    console.log(ID)
-    io.to(socket.id).emit('seek_id',ID);
-  })
+  socket.on("req_id", () => {
+    console.log(ID);
+    io.to(socket.id).emit("seek_id", ID);
+  });
 });
 
 app.set("views", path.join(__dirname, "publicis"));

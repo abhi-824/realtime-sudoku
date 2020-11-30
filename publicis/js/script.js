@@ -3,6 +3,8 @@ let room = window.location.href.split("/")[3];
 let elem = document.createElement("div");
 let create_id;
 let timer = document.querySelector(".timer");
+let ready = document.querySelector(".ready_btn");
+
 socket.emit('req_id');
 console.log(timer);
 
@@ -105,7 +107,6 @@ function competitiveModeBackend() {
   document.querySelector(".modes").classList.add("side_hoja");
 }
 function join_room(room) {
-  let ready = document.querySelector(".ready_btn");
   
   videoOn();
   loaderfor1sec();
@@ -163,7 +164,7 @@ ready.addEventListener("click", () => {
   ready.classList.remove("btn-outline-dark");
   ready.classList.remove("btn-primary");
   let user = firebase.auth().currentUser;
-
+ 
   db.collection("users")
     .where("email", "==", user.email)
     .get()
