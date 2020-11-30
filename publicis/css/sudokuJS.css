@@ -3,11 +3,55 @@
 // Author: Jonas Ohlsson
 // License: MIT
 */
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Audiowide&family=Bungee+Shade&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
 * {
   font-family: "Poppins";
 }
+
+span {
+  position: absolute;
+  top: 0;
+}
+
+.logo {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 5vw;
+  text-align: center;
+  line-height: 1;
+  margin: 0;
+  top: 0;
+  right: 1rem;
+  position: absolute;
+  color: #2d2d2d;
+  letter-spacing: -.5rem;
+  -webkit-animation: flicker 3s linear infinite;
+          animation: flicker 3s linear infinite;
+}
+
+@-webkit-keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: .99;
+    text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.4), 1px -1px 0 rgba(255, 255, 255, 0.4), -1px 1px 0 rgba(255, 255, 255, 0.4), 1px 1px 0 rgba(255, 255, 255, 0.4), 0 -2px 8px, 0 0 2px, 0 0 5px #ff7e00, 0 0 15px #ff4444, 0 0 2px #ff7e00, 0 2px 3px #000;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
+@keyframes flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: .99;
+    text-shadow: -1px -1px 0 rgba(255, 255, 255, 0.4), 1px -1px 0 rgba(255, 255, 255, 0.4), -1px 1px 0 rgba(255, 255, 255, 0.4), 1px 1px 0 rgba(255, 255, 255, 0.4), 0 -2px 8px, 0 0 2px, 0 0 5px #ff7e00, 0 0 15px #ff4444, 0 0 2px #ff7e00, 0 2px 3px #000;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+    text-shadow: none;
+  }
+}
+
 body {
   background-color: rgb(51, 51, 51) !important;
   color:rgb(209, 209, 209)!important;
