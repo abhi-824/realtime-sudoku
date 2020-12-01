@@ -1,249 +1,266 @@
 <!DOCTYPE html>
-<head>
-   <meta charset="utf-8">
-   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-   <link rel="stylesheet" media="all" type="text/css" href="css/sudokuJS.css">
-   <style>
-      * {
-      margin:0; padding:0;
-      -moz-box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      box-sizing: border-box;
-      }
-   </style>
-   <title>Brain Teaser</title>
-   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
-   <script type="text/javascript" src="js/sudokuJS.js"></script>
-   <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-      />
-   <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-      crossorigin="anonymous"
-      />
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-   <!-- Font Awesome -->
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-   <!-- Google Fonts -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-   <!-- Bootstrap core CSS -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-   <!-- Material Design Bootstrap -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-   <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
-   <script src="/socket.io/socket.io.js"></script>
+	<head>
+		<meta charset="utf-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<link rel="stylesheet" media="all" type="text/css" href="css/sudokuJS.css">
+		<style>
+			* {
+				margin:0; padding:0;
+				-moz-box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+
+		</style>
+
+		<title>Brain Teaser</title>
+
+
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script type="text/javascript" src="js/sudokuJS.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+			integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+			crossorigin="anonymous"
+		/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+<script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
 </head>
-<body>
-	<div class="containerForOverlay">
-		<div class="logo">#</div>
-      <div class="loader hidden">
-         <p>Loading...</p>
-      </div>
-      <div class="wrap">
-         <div class="timer hidden"></div>
-         <h1 class="heading">Brain Teaser</h1>
-         <div class="modes">
-            <button class="competitiveMode">Competitive Mode</button>
-            <button class="practiceMode ">Practice Mode</button>
-         </div>
-         <div class="button_after_practice_mode hidden2">
-            <button type="button" class="js-generate-board-btn--easy js-generate-board noob">Noob</button>
-            <button type="button" class="js-generate-board-btn--medium js-generate-board intermediate">Intermediate</button>
-            <button type="button" class="js-generate-board-btn--hard js-generate-board mastermind">Mastermind</button>
-            <button type="button" class="js-generate-board-btn--very-hard js-generate-board pro">Pro</button>
-         </div>
-         <div class="hidden candidates">
-            <label for="toggleCandidates">Show hints </label><input id="toggleCandidates" class="js-candidate-toggle" type="checkbox"/>
-         </div>
-         <div id="sudoku" class="sudoku-board hidden">
-         </div>
-         <div class="hidden krr">
-            Solve: <button type="button" class="js-solve-step-btn">One Step</butto><button type="button" class="js-solve-all-btn">All</button>
-            <br>
-            <button type="button" class="js-clear-board-btn">Clear Board</button>
-         </div>
-      </div>
-      <div class="login_page">
-         <div class="container">
-            <div class="login_form hidden22">
-               <button class="btn btn-outline-success login">LOGIN</button>
-               <div class="line"></div>
-               <p>OR</p>
-               <div class="line"></div>
-               <button class="btn btn-outline-yellow signup">SIGNUP</button>
-               <div class="line"></div>
-               <p>OR</p>
-               <div class="line"></div>
-               <button class="btn btn-outline-dark login_as_guest">Login As Guest</button>	
-               <p>OR</p>
-               <div class="line"></div>
-               <button class="btn btn-outline-success google-sign-in"><img src="res/google-logo.png" alt="">	</button>	
-            </div>
-            <form action="#" id="signup-form" class="hidden formdd">
-               <input type="text" placeholder="Username" id="signup-handle" required />
-               <input type="email" placeholder="Email" id="signup-email" />
-               <input type="password" placeholder="Password" id="signup-password" required />
-               <button type="submit">Sign Up</button>
-            </form>
-            <form action="#" id="login-form" class="hidden formdd">
-               <input type="email"  placeholder="Email" id="login-email" required />
-               <input type="password" id="login-password" placeholder="Password" />
-               <a href="#" class="forgot_pass">Forgot Password? Relax, We got you cover</a>
-               <button type="submit">Sign In</button>
-            </form>
-            <form action="#" id="login-as-guest-form" class="hidden formdd">
-               <input id="handle-login-as-guest" placeholder="Username" required/>
-               <button type="submit">Sign In as a Guest</button>
-            </form>
-            <form action="#" class="formdd hidden" id="forgot">
-               <input type="email"  placeholder="Email" id="login-email-forgot" required />
-               <button type="submit">Send Mail</button>
-            </form>
-            <div class="after-forgot hidden formdd">
-               <p>A verification mail has been sent to your email. Check it buddy</p>
-               <button class="back-login">Back to login</button>
-            </div>
-            <div class="ask_handle formdd hidden">
-               <h2>Enter Username</h2>
-               <form action="">
-                  <input type="text" class="ask_handle_val" placeholder="Enter Username">
-                  <button class="ask-handle-submit" type="submit">Submit</button>
-               </form>
-            </div>
-         </div>
-      </div>
-      
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+	<body>
+		<div class="containerForOverlay">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p id="room_id_t">Some text in the Modal..</p>
-  </div>
+			<!-- <img src="res/mic.svg" alt=""> -->
+					<div class="loader hidden">
+						<!-- <img src="res/45.gif" alt=""> -->
+						<p>Loading...</p>
+					</div>
+				<div class="wrap">
+					<!-- <h1>S	udokuJS demo with board generation</h1> -->
+					<div class="timer hidden"></div>
+					<h1 class="heading">Brain Teaser</h1>
+					<div class="modes">
+						<button class="competitiveMode">Competitive Mode</button>
+						<button class="practiceMode ">Practice Mode</button>
+					</div>
+					
+					<!--show candidates toggle-->
+					
+					<!--genrate board btns-->
+					<div class="button_after_practice_mode hidden2">
+						<button type="button" class="js-generate-board-btn--easy js-generate-board noob">Noob</button>
+						<button type="button" class="js-generate-board-btn--medium js-generate-board intermediate">Intermediate</button>
+						<button type="button" class="js-generate-board-btn--hard js-generate-board mastermind">Mastermind</button>
+						<button type="button" class="js-generate-board-btn--very-hard js-generate-board pro">Pro</button>
+					</div>
+					<div class="hidden candidates">
+						<label for="toggleCandidates">Show hints </label><input id="toggleCandidates" class="js-candidate-toggle" type="checkbox"/>
+					</div>
+			
+					<!--the only required html-->
+					<div id="sudoku" class="sudoku-board hidden">
+					</div>
+					<div class="hidden krr">
+						<!--solve buttons-->
+						Solve: <button type="button" class="js-solve-step-btn">One Step</butto><button type="button" class="js-solve-all-btn">All</button>
+						<br>
+						<!--clear board btn-->
+						<button type="button" class="js-clear-board-btn">Clear Board</button>
+			
+					</div>
+				</div>
+				<div class="login_page">
+					<div class="container">
+						<div class="login_form hidden22">
+							<button class="btn btn-outline-success login">LOGIN</button>
+							<div class="line"></div>
+							<p>OR</p>
+							<div class="line"></div>
+							<button class="btn btn-outline-yellow signup">SIGNUP</button>
+							<div class="line"></div>
+							<p>OR</p>
+							<div class="line"></div>
+							<button class="btn btn-outline-dark login_as_guest">Login As Guest</button>	
+							<p>OR</p>
+							<div class="line"></div>
+							<button class="btn btn-outline-success google-sign-in"><img src="res/google-logo.png" alt="">	</button>	
+							
+						</div>
+						<form action="#" id="signup-form" class="hidden formdd">
+							<input type="text" placeholder="Username" id="signup-handle" required />
+							<input type="email" placeholder="Email" id="signup-email" />
+							<input type="password" placeholder="Password" id="signup-password" required />
+							<button type="submit">Sign Up</button>
+						 </form>
+						 <form action="#" id="login-form" class="hidden formdd">
+							<input type="email"  placeholder="Email" id="login-email" required />
+							<input type="password" id="login-password" placeholder="Password" />
+							<a href="#" class="forgot_pass">Forgot Password? Relax, We got you cover</a>
+							<!-- <a href="#">Forgot your password?</a> -->
+							<button type="submit">Sign In</button>
+						 </form>
+						 <form action="#" id="login-as-guest-form" class="hidden formdd">
+								 
+							  
+							<input id="handle-login-as-guest" placeholder="Username" required/>
+						   
+							<!-- <a href="#">Forgot your password?</a> -->
+							<button type="submit">Sign In as a Guest</button>
+						 </form>
+						 <form action="#" class="formdd hidden" id="forgot">
+							<input type="email"  placeholder="Email" id="login-email-forgot" required />
+							<button type="submit">Send Mail</button>
+						 </form>
+						 <div class="after-forgot hidden formdd">
+							<p>A verification mail has been sent to your email. Check it buddy</p>
+							<button class="back-login">Back to login</button>
+						 </div>
+						 <div class="ask_handle formdd hidden">
+							<h2>Enter Username</h2>
+							<form action="">
+							   <input type="text" class="ask_handle_val" placeholder="Enter Username">
+							   <button class="ask-handle-submit" type="submit">Submit</button>
+							</form>
+						 </div>
+					</div>
+				</div>
+				<div class="competitiveModeOn hidden">
+					<button class="logout">LOGOUT</button>
+					<button class="ready_btn hidden">READY</button>
+					<div class="buttons">
+						<button class="join_room">Join a Room</button>
+						<button class="create_one">Create One</button>
+					</div>
+					<form action="" id="ask_for_room" class="formdd hidden">
+						<input type="text" class="ask_room" placeholder="Enter Room ID">
+						<button class="ask-room-submit" type="submit">Submit</button>
+					</form>
+					<div class="after_room">
+						<div class="video-grid"></div>
+						
+					</div>
+					<div id="sudoku2" class="sudoku-board hidden">
+					</div>
+				</div>
+				
+				<footer>
+					<p>
+						Made with
+						<i class="fa fa-heart" style="color: red" aria-hidden="true"></i> By
+						Abhinandan Sharma
+					</p>
+				</footer>
+		</div>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
 
-</div>
-      <div class="competitiveModeOn hidden">
-         <button class="logout">LOGOUT</button>
-         <button class="ready_btn hidden">READY</button>
-         <div class="buttons">
-            <button class="join_room">Join a Room</button>
-            <button class="create_one">Create One</button>
-         </div>
-         <form action="" id="ask_for_room" class="formdd hidden">
-            <input type="text" class="ask_room" placeholder="Enter Room ID">
-            <button class="ask-room-submit" type="submit">Submit</button>
-         </form>
-         <div class="after_room">
-            <div class="video-grid"></div>
-         </div>
-         <div id="sudoku2" class="sudoku-board hidden">
-         </div>
-      </div>
-      <footer>
-         <p>
-            Made with
-            <i class="fa fa-heart" style="color: red" aria-hidden="true"></i> By
-            Aakash Kumar Singh and Deepak Mishra
-         </p>
-      </footer>
-   </div>
-   <!-- The core Firebase JS SDK is always required and must be listed first -->
-   <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
-   <script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
-   <!-- TODO: Add SDKs for Firebase products that you want to use
-      https://firebase.google.com/docs/web/setup#available-libraries -->
-   <script>
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      var firebaseConfig = {
-        apiKey: "AIzaSyDqFVL5he87qI8hg20ngdkls9jTRXCIX7M",
-        authDomain: "brain-teaser-77a8d.firebaseapp.com",
-        databaseURL: "https://brain-teaser-77a8d.firebaseio.com",
-        projectId: "brain-teaser-77a8d",
-        storageBucket: "brain-teaser-77a8d.appspot.com",
-        messagingSenderId: "367467694538",
-        appId: "1:367467694538:web:e6acd6456f7e0cdb372733",
-        measurementId: "G-1HBCV05JGG"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-   </script>
-   <script src="js/auth.js"></script>
-   <script>
-      var	$candidateToggle = $(".js-candidate-toggle"),
-      	$generateBoardBtnEasy = $(".js-generate-board-btn--easy"),
-      	$generateBoardBtnMedium = $(".js-generate-board-btn--medium"),
-      	$generateBoardBtnHard = $(".js-generate-board-btn--hard"),
-      	$generateBoardBtnVeryHard = $(".js-generate-board-btn--very-hard"),
-      
-      	$solveStepBtn = $(".js-solve-step-btn"),
-      	$solveAllBtn = $(".js-solve-all-btn"),
-      	$clearBoardBtn = $(".js-clear-board-btn"),
-      
-      	mySudokuJS = $("#sudoku").sudokuJS({
-      		difficulty: "very hard"
-      		//change state of our candidate showing checkbox on change in sudokuJS
-      		,candidateShowToggleFn : function(showing){
-      			$candidateToggle.prop("checked", showing);
-      		}
-      	});
-      	mySudokuJS2 = $("#sudoku2").sudokuJS({
-      		difficulty: "very hard"
-      		//change state of our candidate showing checkbox on change in sudokuJS
-      		,candidateShowToggleFn : function(showing){
-      			$candidateToggle.prop("checked", showing);
-      		}
-      	});
-      	mySudokuJS2.generateBoard("medium");
-      
-      $solveStepBtn.on("click", mySudokuJS.solveStep);
-      $solveAllBtn.on("click", mySudokuJS.solveAll);
-      $clearBoardBtn.on("click", mySudokuJS.clearBoard);
-      
-      $generateBoardBtnEasy.on("click", function(){
-      	mySudokuJS.generateBoard("easy");
-      });
-      $generateBoardBtnMedium.on("click", function(){
-      	mySudokuJS.generateBoard("medium");
-      });
-      $generateBoardBtnHard.on("click", function(){
-      	mySudokuJS.generateBoard("hard");
-      });
-      $generateBoardBtnVeryHard.on("click", function(){
-      	mySudokuJS.generateBoard("very hard");
-      });
-      
-      $candidateToggle.on("change", function(){
-      	if($candidateToggle.is(":checked"))
-      		mySudokuJS.showCandidates();
-      	else
-      		mySudokuJS.hideCandidates();
-      });
-      $candidateToggle.trigger("change");
-   </script>
-   
-   <!-- Font Awesome -->
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-   <!-- Google Fonts -->
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-   <!-- Bootstrap core CSS -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-   <!-- Material Design Bootstrap -->
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-   <script defer src="js/utils.js"></script>
-   <script defer src="js/video.js"></script>
-   <script defer src="js/socket.js"></script>
-   <script defer src="js/script.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDqFVL5he87qI8hg20ngdkls9jTRXCIX7M",
+    authDomain: "brain-teaser-77a8d.firebaseapp.com",
+    databaseURL: "https://brain-teaser-77a8d.firebaseio.com",
+    projectId: "brain-teaser-77a8d",
+    storageBucket: "brain-teaser-77a8d.appspot.com",
+    messagingSenderId: "367467694538",
+    appId: "1:367467694538:web:e6acd6456f7e0cdb372733",
+    measurementId: "G-1HBCV05JGG"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="js/auth.js"></script>
+	<script>
+		var	$candidateToggle = $(".js-candidate-toggle"),
+			$generateBoardBtnEasy = $(".js-generate-board-btn--easy"),
+			$generateBoardBtnMedium = $(".js-generate-board-btn--medium"),
+			$generateBoardBtnHard = $(".js-generate-board-btn--hard"),
+			$generateBoardBtnVeryHard = $(".js-generate-board-btn--very-hard"),
+
+			$solveStepBtn = $(".js-solve-step-btn"),
+			$solveAllBtn = $(".js-solve-all-btn"),
+			$clearBoardBtn = $(".js-clear-board-btn"),
+
+			mySudokuJS = $("#sudoku").sudokuJS({
+				difficulty: "very hard"
+				//change state of our candidate showing checkbox on change in sudokuJS
+				,candidateShowToggleFn : function(showing){
+					$candidateToggle.prop("checked", showing);
+				}
+			});
+			mySudokuJS2 = $("#sudoku2").sudokuJS({
+				difficulty: "very hard"
+				//change state of our candidate showing checkbox on change in sudokuJS
+				,candidateShowToggleFn : function(showing){
+					$candidateToggle.prop("checked", showing);
+				}
+			});
+			mySudokuJS2.generateBoard("medium");
+
+		$solveStepBtn.on("click", mySudokuJS.solveStep);
+		$solveAllBtn.on("click", mySudokuJS.solveAll);
+		$clearBoardBtn.on("click", mySudokuJS.clearBoard);
+
+		$generateBoardBtnEasy.on("click", function(){
+			mySudokuJS.generateBoard("easy");
+		});
+		$generateBoardBtnMedium.on("click", function(){
+			mySudokuJS.generateBoard("medium");
+		});
+		$generateBoardBtnHard.on("click", function(){
+			mySudokuJS.generateBoard("hard");
+		});
+		$generateBoardBtnVeryHard.on("click", function(){
+			mySudokuJS.generateBoard("very hard");
+		});
+
+		$candidateToggle.on("change", function(){
+			if($candidateToggle.is(":checked"))
+				mySudokuJS.showCandidates();
+			else
+				mySudokuJS.hideCandidates();
+		});
+		$candidateToggle.trigger("change");
+	</script>
+
+<!-- Font Awesome -->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">	
+
+
+<script src="js/script.js"></script>
 </body>
+
 </html>
