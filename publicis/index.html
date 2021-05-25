@@ -31,6 +31,14 @@
 			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 			crossorigin="anonymous"
 		/>
+		
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+		<!-- Google Fonts -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+		<!-- Bootstrap core CSS -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+		<!-- Material Design Bootstrap -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 		<!-- Font Awesome -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -79,8 +87,8 @@
 					</div>
 					<div class="hidden krr">
 						<!--solve buttons-->
-						Solve: <button type="button" class="js-solve-step-btn">One Step</butto><button type="button" class="js-solve-all-btn">All</button>
-						<br>
+						Solve: <button type="button" class="js-solve-step-btn">One Step</button><button type="button" class="js-solve-all-btn">All</button>
+						<br/>
 						<!--clear board btn-->
 						<button type="button" class="js-clear-board-btn">Clear Board</button>
 			
@@ -153,6 +161,7 @@
 						<button class="ask-room-submit" type="submit">Submit</button>
 					</form>
 					<div class="after_room">
+						<div class="roomIDFill"></div>
 						<div class="video-grid"></div>
 						
 					</div>
@@ -168,99 +177,92 @@
 					</p>
 				</footer>
 		</div>
-	<!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-analytics.js"></script>
 
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.21.1/firebase-firestore.js"></script>
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#available-libraries -->
 
-	 <script>
-		// Your web app's Firebase configuration
-		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-		var firebaseConfig = {
-		  apiKey: "AIzaSyDqFVL5he87qI8hg20ngdkls9jTRXCIX7M",
-		  authDomain: "brain-teaser-77a8d.firebaseapp.com",
-		  databaseURL: "https://brain-teaser-77a8d.firebaseio.com",
-		  projectId: "brain-teaser-77a8d",
-		  storageBucket: "brain-teaser-77a8d.appspot.com",
-		  messagingSenderId: "367467694538",
-		  appId: "1:367467694538:web:e6acd6456f7e0cdb372733",
-		  measurementId: "G-1HBCV05JGG"
-		};
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
-		firebase.analytics();
-	  </script>
-<script src="js/auth.js"></script>
-	<script>
-		var	$candidateToggle = $(".js-candidate-toggle"),
-			$generateBoardBtnEasy = $(".js-generate-board-btn--easy"),
-			$generateBoardBtnMedium = $(".js-generate-board-btn--medium"),
-			$generateBoardBtnHard = $(".js-generate-board-btn--hard"),
-			$generateBoardBtnVeryHard = $(".js-generate-board-btn--very-hard"),
+		<script>
+			// Your web app's Firebase configuration
+			// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+			var firebaseConfig = {
+			apiKey: "AIzaSyDqFVL5he87qI8hg20ngdkls9jTRXCIX7M",
+			authDomain: "brain-teaser-77a8d.firebaseapp.com",
+			databaseURL: "https://brain-teaser-77a8d.firebaseio.com",
+			projectId: "brain-teaser-77a8d",
+			storageBucket: "brain-teaser-77a8d.appspot.com",
+			messagingSenderId: "367467694538",
+			appId: "1:367467694538:web:e6acd6456f7e0cdb372733",
+			measurementId: "G-1HBCV05JGG"
+			};
+			// Initialize Firebase
+			firebase.initializeApp(firebaseConfig);
+			firebase.analytics();
+		</script>
+		<script src="js/script.js"></script>
+		<script defer src="js/auth.js"></script>
+		<script>
+			var	$candidateToggle = $(".js-candidate-toggle"),
+				$generateBoardBtnEasy = $(".js-generate-board-btn--easy"),
+				$generateBoardBtnMedium = $(".js-generate-board-btn--medium"),
+				$generateBoardBtnHard = $(".js-generate-board-btn--hard"),
+				$generateBoardBtnVeryHard = $(".js-generate-board-btn--very-hard"),
 
-			$solveStepBtn = $(".js-solve-step-btn"),
-			$solveAllBtn = $(".js-solve-all-btn"),
-			$clearBoardBtn = $(".js-clear-board-btn"),
+				$solveStepBtn = $(".js-solve-step-btn"),
+				$solveAllBtn = $(".js-solve-all-btn"),
+				$clearBoardBtn = $(".js-clear-board-btn"),
 
-			mySudokuJS = $("#sudoku").sudokuJS({
-				difficulty: "very hard"
-				//change state of our candidate showing checkbox on change in sudokuJS
-				,candidateShowToggleFn : function(showing){
-					$candidateToggle.prop("checked", showing);
-				}
+				mySudokuJS = $("#sudoku").sudokuJS({
+					difficulty: "very hard"
+					//change state of our candidate showing checkbox on change in sudokuJS
+					,candidateShowToggleFn : function(showing){
+						$candidateToggle.prop("checked", showing);
+					}
+				});
+				mySudokuJS2 = $("#sudoku2").sudokuJS({
+					difficulty: "very hard"
+					//change state of our candidate showing checkbox on change in sudokuJS
+					,candidateShowToggleFn : function(showing){
+						$candidateToggle.prop("checked", showing);
+					}
+				});
+				mySudokuJS2.generateBoard("medium");
+
+			$solveStepBtn.on("click", mySudokuJS.solveStep);
+			$solveAllBtn.on("click", mySudokuJS.solveAll);
+			$clearBoardBtn.on("click", mySudokuJS.clearBoard);
+
+			$generateBoardBtnEasy.on("click", function(){
+				mySudokuJS.generateBoard("easy");
 			});
-			mySudokuJS2 = $("#sudoku2").sudokuJS({
-				difficulty: "very hard"
-				//change state of our candidate showing checkbox on change in sudokuJS
-				,candidateShowToggleFn : function(showing){
-					$candidateToggle.prop("checked", showing);
-				}
+			$generateBoardBtnMedium.on("click", function(){
+				mySudokuJS.generateBoard("medium");
 			});
-			mySudokuJS2.generateBoard("medium");
+			$generateBoardBtnHard.on("click", function(){
+				mySudokuJS.generateBoard("hard");
+			});
+			$generateBoardBtnVeryHard.on("click", function(){
+				mySudokuJS.generateBoard("very hard");
+			});
 
-		$solveStepBtn.on("click", mySudokuJS.solveStep);
-		$solveAllBtn.on("click", mySudokuJS.solveAll);
-		$clearBoardBtn.on("click", mySudokuJS.clearBoard);
-
-		$generateBoardBtnEasy.on("click", function(){
-			mySudokuJS.generateBoard("easy");
-		});
-		$generateBoardBtnMedium.on("click", function(){
-			mySudokuJS.generateBoard("medium");
-		});
-		$generateBoardBtnHard.on("click", function(){
-			mySudokuJS.generateBoard("hard");
-		});
-		$generateBoardBtnVeryHard.on("click", function(){
-			mySudokuJS.generateBoard("very hard");
-		});
-
-		$candidateToggle.on("change", function(){
-			if($candidateToggle.is(":checked"))
-				mySudokuJS.showCandidates();
-			else
-				mySudokuJS.hideCandidates();
-		});
-		$candidateToggle.trigger("change");
-	</script>
+			$candidateToggle.on("change", function(){
+				if($candidateToggle.is(":checked"))
+					mySudokuJS.showCandidates();
+				else
+					mySudokuJS.hideCandidates();
+			});
+			$candidateToggle.trigger("change");
+		</script>
 
 <!-- Font Awesome -->
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-<!-- Google Fonts -->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-<!-- Bootstrap core CSS -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-<!-- Material Design Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">	
+	
 
 
-<script src="js/script.js"></script>
 </body>
 
 </html>

@@ -57,10 +57,12 @@ io.on('connection', (socket) => {
 	});
 	socket.on('make_it_real',(data,room)=>{
 		console.log("yes");
+		console.log(data)
 		io.to(room).emit('start_game',data);	
 	})
 	socket.on('join-room',(userId,roomId,username)=>{
 		const user = userJoin(socket.id, userId,roomId);
+		console.log(roomId)
 		// console.log(roomId,user.room);
 		socket.join(roomId)
 		// console.log("heel")

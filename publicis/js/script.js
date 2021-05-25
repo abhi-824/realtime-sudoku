@@ -130,6 +130,8 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
           socket.emit('give_id');
           // loaderOn();
           socket.on('rec_id',(id)=>{
+            console.log(id)
+            document.querySelector(".roomIDFill").innerHTML=id;
               ready(id);
               // show_screen(ready_screen);
               // videoOnlyUser(`videoBeforeJoin`,1);
@@ -139,6 +141,11 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
       {
         let ready = document.querySelector(".ready_btn");
         ready.addEventListener("click", () => {
+          
+          socket.on('start_sudoku',()=>{
+            console.log(room);  
+            socket.emit('make_it_real',document.querySelector('#sudoku2').innerHTML,room);
+          })
           ready.classList.remove("btn-outline-dark");
           ready.classList.remove("btn-primary");
           let user = firebase.auth().currentUser;
@@ -288,14 +295,11 @@ function display(str) {
   }, 2000);
   document.body.appendChild(div);
 }
-socket.on('start_sudoku',()=>{
-  console.log(room);  
-  socket.emit('make_it_real',document.querySelector('#sudoku2').innerHTML,room);
-})
-socket.on('start_game',(data)=>{
+socket.on('start_game',(data  )=>{
   loaderfor1sec();
   document.querySelector('#sudoku2').innerHTML=data;
   console.log(data);  
+  console.log("dfnwofnw")
   document.querySelector('#sudoku2').classList.remove('hidden');
   document.querySelector('.ready_btn').classList.add('hidden');
 }) 
