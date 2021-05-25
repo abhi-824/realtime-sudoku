@@ -73,6 +73,10 @@ io.on('connection', (socket) => {
 		socket.to(roomId).broadcast.emit('user-connected',userId)
 	})
 
+	socket.on("give_id", () => {
+		let ID = nanoid(4);
+		io.to(socket.id).emit("rec_id", ID);
+	  });
 });
 app.get('/', (req, res) => {
 	// console.log("helklo")

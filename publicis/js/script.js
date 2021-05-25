@@ -44,6 +44,9 @@ for (let i = 0; i < gen_btn.length; i++) {
   gen_btn[i].addEventListener("click", () => {
     console.log("hh");
     loaderfor1sec();
+
+    document.body.style.height=`130vh`;
+    document.querySelector(".containerForOverlay").style.height=`130vh`;
     document.querySelector(".sudoku-board").classList.remove("hidden");
     document.querySelector(".krr").classList.remove("hidden");
     document.querySelector(".candidates").classList.remove("hidden");
@@ -117,125 +120,138 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
   auth.onAuthStateChanged((user) => {
     // var handle_name=document.getElementById('')
     if (user) {
-      document.querySelector(".competitiveModeOn").classList.remove("hidden");
-      document.querySelector(".join_room").addEventListener("click", (e) => {
-        e.preventDefault();
+        document.querySelector(".competitiveModeOn").classList.remove("hidden");
+        document.querySelector(".join_room").addEventListener("click", (e) => {
+          e.preventDefault();
+          document.querySelector("#ask_for_room").classList.remove("hidden");
+        });
+        document.querySelector(".create_one").addEventListener("click", (e) => {
+          e.preventDefault();
+          socket.emit('give_id');
+          // loaderOn();
+          socket.on('rec_id',(id)=>{
+              ready(id);
+              // show_screen(ready_screen);
+              // videoOnlyUser(`videoBeforeJoin`,1);
+          })
+        });
+      function ready(room)
+      {
+        let ready = document.querySelector(".ready_btn");
+        ready.addEventListener("click", () => {
+          ready.classList.remove("btn-outline-dark");
+          ready.classList.remove("btn-primary");
+          let user = firebase.auth().currentUser;
 
-        document.querySelector("#ask_for_room").classList.remove("hidden");
-      });
+          db.collection("users")
+            .where("email", "==", user.email)
+            .get()
+            .then((snapshot) => {
+              snapshot.docs.forEach((doc) => {
+                const handle_list = doc.data();
+                if (handle_list.email === user.email) {
+                  let fname = handle_list.name;
+                  console.log(room)
+                  socket.emit("make_ready", {fname, room});
+                  console.log(fname);
+                }
+              });
+            });
+        });
+        const video_grid = document.querySelector(".video-grid");
+        const myvideo = document.createElement("video");
+        myvideo.muted = true;
+        navigator.mediaDevices
+          .getUserMedia({
+            video: true,
+            audio: true,
+          })
+          .then((stream) => {
+            addVideoStream(myvideo, stream);
+            // socket.emit('catch_user', stream);
+
+            socket.on("user-connected", (fname) => {
+              console.log(fname);
+              connectToNewUser(fname, stream);
+            });
+
+            peer.on("call", (call) => {
+              call.answer(stream);
+              const video = document.createElement("video");
+              call.on("stream", (userVideoStream) => {
+                addVideoStream(video, userVideoStream);
+              });
+            });
+          });
+        function addVideoStream(video, stream) {
+          video.srcObject = stream;
+          video.addEventListener("loadedmetadata", () => {
+            video.play();
+          });
+          console.log("he");
+          let div = document.createElement("div");
+          div.appendChild(video);
+          elem.innerHTML =
+            '<img src="res/mic.svg" class="mic-icon enable" alt=""> <img src="res/video.svg" class="vid-icon enable" alt="">';
+          elem.classList.add("icons");
+          div.appendChild(elem);
+          video_grid.appendChild(div);
+
+          document
+            .querySelector(".mic-icon")
+            .addEventListener("click", () => {
+              myvideo.muted = !myvideo.muted;
+            });
+        }
+        function connectToNewUser(userId, stream) {
+          const call = peer.call(userId, stream);
+          const video2 = document.createElement("video");
+          call.on("stream", (userVideoStream) => {
+            addVideoStream(video2, userVideoStream);
+          });
+          call.on("close", () => {
+            video2.remove();
+          });
+        }
+        var peer = new Peer({
+          // secure: true,
+          host: "brainteaser.herokuapp.com",
+          port: "",
+          path: "/peerjs",
+        });
+        console.log(peer);
+        peer.on("open", (id) => {
+          console.log("jhaod");
+          db.collection("users")
+            .where("email", "==", user.email)
+            .get()
+            .then((snapshot) => {
+              snapshot.docs.forEach((doc) => {
+                const handle_list = doc.data();
+                if (handle_list.email === user.email) {
+                  let fname = handle_list.name;
+
+                  socket.emit("join-room", id, room, fname);
+                  console.log(fname);
+                }
+              });
+            });
+        });
+        document.querySelector(".buttons").classList.add("hidden");
+        document.querySelector("#ask_for_room").classList.add("hidden");
+        document.querySelector(".modes").classList.add("hidden");
+        document.querySelector(".ready_btn").classList.remove("hidden");
+
+        loaderfor1sec();
+     
+      }
       document
         .querySelector("#ask_for_room")
         .addEventListener("submit", (e) => {
           e.preventDefault();
           room = document.querySelector(".ask_room").value;
-
-          let ready = document.querySelector(".ready_btn");
-          ready.addEventListener("click", () => {
-            ready.classList.remove("btn-outline-dark");
-            ready.classList.remove("btn-primary");
-            let user = firebase.auth().currentUser;
-
-            db.collection("users")
-              .where("email", "==", user.email)
-              .get()
-              .then((snapshot) => {
-                snapshot.docs.forEach((doc) => {
-                  const handle_list = doc.data();
-                  if (handle_list.email === user.email) {
-                    let fname = handle_list.name;
-                    console.log(room)
-                    socket.emit("make_ready", {fname, room});
-                    console.log(fname);
-                  }
-                });
-              });
+          ready(room);
           });
-          const video_grid = document.querySelector(".video-grid");
-          const myvideo = document.createElement("video");
-          myvideo.muted = true;
-          navigator.mediaDevices
-            .getUserMedia({
-              video: true,
-              audio: true,
-            })
-            .then((stream) => {
-              addVideoStream(myvideo, stream);
-              // socket.emit('catch_user', stream);
-
-              socket.on("user-connected", (fname) => {
-                console.log(fname);
-                connectToNewUser(fname, stream);
-              });
-
-              peer.on("call", (call) => {
-                call.answer(stream);
-                const video = document.createElement("video");
-                call.on("stream", (userVideoStream) => {
-                  addVideoStream(video, userVideoStream);
-                });
-              });
-            });
-          function addVideoStream(video, stream) {
-            video.srcObject = stream;
-            video.addEventListener("loadedmetadata", () => {
-              video.play();
-            });
-            console.log("he");
-            let div = document.createElement("div");
-            div.appendChild(video);
-            elem.innerHTML =
-              '<img src="res/mic.svg" class="mic-icon enable" alt=""> <img src="res/video.svg" class="vid-icon enable" alt="">';
-            elem.classList.add("icons");
-            div.appendChild(elem);
-            video_grid.appendChild(div);
-
-            document
-              .querySelector(".mic-icon")
-              .addEventListener("click", () => {
-                myvideo.muted = !myvideo.muted;
-              });
-          }
-          function connectToNewUser(userId, stream) {
-            const call = peer.call(userId, stream);
-            const video2 = document.createElement("video");
-            call.on("stream", (userVideoStream) => {
-              addVideoStream(video2, userVideoStream);
-            });
-            call.on("close", () => {
-              video2.remove();
-            });
-          }
-          var peer = new Peer({
-            // secure: true,
-            host: "brainteaser.herokuapp.com",
-            port: "",
-            path: "/peerjs",
-          });
-          console.log(peer);
-          peer.on("open", (id) => {
-            console.log("jhaod");
-            db.collection("users")
-              .where("email", "==", user.email)
-              .get()
-              .then((snapshot) => {
-                snapshot.docs.forEach((doc) => {
-                  const handle_list = doc.data();
-                  if (handle_list.email === user.email) {
-                    let fname = handle_list.name;
-
-                    socket.emit("join-room", id, room, fname);
-                    console.log(fname);
-                  }
-                });
-              });
-          });
-          document.querySelector(".buttons").classList.add("hidden");
-          document.querySelector("#ask_for_room").classList.add("hidden");
-          document.querySelector(".modes").classList.add("hidden");
-          document.querySelector(".ready_btn").classList.remove("hidden");
-
-          loaderfor1sec();
-        });
     } else {
       document.querySelector(".login_form").classList.remove("hidden22");
     }

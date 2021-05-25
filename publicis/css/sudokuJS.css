@@ -255,9 +255,9 @@ footer p {
 }
 .login_form {
   position: absolute;
-  left: 40vw;
+  /* left: 40vw; */
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   margin-top: 5rem;
   align-items: center;
@@ -265,9 +265,8 @@ footer p {
   transition: 0.5s;
 }
 .line {
-  width: 200px;
-  height: 2px;
-
+  width: 2px;
+  height: 200px;
   background-color: #80808093;
 }
 
