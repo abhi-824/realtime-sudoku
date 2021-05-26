@@ -131,7 +131,7 @@ document.querySelector(".competitiveMode").addEventListener("click", (e) => {
           // loaderOn();
           socket.on('rec_id',(id)=>{
             console.log(id)
-            document.querySelector(".roomIDFill").innerHTML=id;
+            document.querySelector(".roomIDFill").innerHTML="Room ID: "+id;
               ready(id);
               // show_screen(ready_screen);
               // videoOnlyUser(`videoBeforeJoin`,1);

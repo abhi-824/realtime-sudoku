@@ -361,6 +361,10 @@ video {
   border: #333;
   height: 30px;
 }
+.roomIDFill{
+  position:absolute;
+  bottom: 0;left: 0;font-size:3rem;
+}
 #sudoku2 {
   position: absolute;
   transform: translateX(100%) translateY(30%);
